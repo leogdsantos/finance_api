@@ -3,6 +3,7 @@ package finance.api.model;
 import java.time.LocalDateTime;
 
 import finance.api.DTO.UsuarioRequestDTO;
+import finance.api.DTO.UsuarioUpdateDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,6 +35,7 @@ public class Usuario {
 	
 	public Usuario() {
 		super();
+		
 	}
 
 	public Usuario(UsuarioRequestDTO dados) {
@@ -52,7 +54,21 @@ public class Usuario {
 		this.ativo = ativo; 
 		
 	}
-
+	public void atualizarUsuario(UsuarioUpdateDTO dados) {
+		
+		if(dados.nome()!=null) {
+			this.nome = dados.nome(); 
+		}
+		if(dados.email()!=null) {
+			this.email = dados.email();
+		}
+		if(dados.senha()!=null){
+			this.senha = dados.senha();
+		}
+	}
+	public void excluir() {
+		this.ativo = false; 
+	}
 
 	public long getId() {
 		return id;
